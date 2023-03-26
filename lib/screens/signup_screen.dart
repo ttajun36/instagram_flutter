@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:instagram_flutter/utils/colors.dart';
 import 'package:instagram_flutter/widgets/text_field_input.dart';
+import 'package:instagram_flutter/resources/auth_methods.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -102,8 +103,17 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               //button login
               InkWell(
+                onTap: () async {
+                  String res = await AuthMethods().signUpUser(
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                    username: _usernameController.text,
+                    bio: _bioController.text,
+                  );
+                  print(res);
+                },
                 child: Container(
-                  child: const Text('Log in'),
+                  child: const Text('Sign up'),
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 12),
